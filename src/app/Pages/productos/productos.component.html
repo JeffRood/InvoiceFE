@@ -1,0 +1,132 @@
+<div class="animated fadeIn general">
+
+    <div class="btnnewcliente">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-success waves-effect waves-light m-r-10" data-toggle="modal" data-target="#ModalAgregar">
+        <i class="fa fa-plus"></i>  Agregar Producto
+      </button>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <table class="table table-sm table-hover cdcliente">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nombre</td>
+                <td>dasdsad</td>
+                <td>dads</td>
+                <td>sdad</td>
+                <td>sfsaf</td>
+                <td>
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10">  Editar </button>
+
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-r-10">  Borrar
+
+              </button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+
+<!-- ==============================================================================================
+Modal Agregar un Producto
+============================================================================================== -->
+
+<div id="ModalAgregar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="text-center"> <i class="fa fa-car"> </i> Registrar Producto </h3>
+                    <br>
+                    <!-- #AgregarProductoForm="ngForm" #VehiculosAgregarForm="ngForm"  (ngSubmit)="CrearVehiculo(VehiculosAgregarForm)" -->
+                    <form ngNativeValidate class="form-material">
+                        <div class="form-group row">
+                            <label for="artDescripcion" class="col-sm-3 col-form-label">Descripcion</label>
+                            <div class="col-xs-12">
+
+                                <!-- <select required class="custom-select " class="form-control" name="Marca" #Marca="ngModel" [(ngModel)]="servicio.selectedVehiculo.ID_Marca">
+
+                                    <option disabled selected>Elegir una Marca</option>
+                                  <option   *ngFor=" let marca of servicio.MarcaList" [value]= "marca.ID_Marca"> {{marca.Marca}}</option>
+
+                                </select> -->
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="artDescripcion" class="col-sm-3 col-form-label">Precio</label>
+                            <div class="col-xs-12">
+
+                                <!-- <select required (click)="servicio.ExtraerModelo(Marca.control.value)" class="custom-select " class="form-control" name="Modelo" #Modelo="ngModel" [(ngModel)]="servicio.selectedVehiculo.ID_Modelo">
+
+                                    <option disabled selected>Elegir un Modelo</option>
+                                  <option *ngFor=" let modelo of servicio.ModeloList" [value]=" modelo.ID_Modelo" > {{modelo.Modelo}} </option>
+
+                                </select> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="artDescripcion" class="col-sm-4 col-form-label">Cantidad</label>
+                            <div class="col-xs-10">
+                                <!-- <input required type="" class="form-control" name="descripcion" #descripcion="ngModel" [(ngModel)]="servicio.selectedVehiculo.Descripcion"> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="artDescripcion" class="col-sm-3 col-form-label">Estado</label>
+                            <div class="col-xs-12">
+
+                                <!-- <select required class="custom-select " class="form-control" name="motor" #motor="ngModel" [(ngModel)]="servicio.selectedVehiculo.ID_Motor">
+                                            <option disabled selected>Elegir un tipo de motor</option>
+                                            <option *ngFor="let motor of servicio.MotorList" [value]="motor.ID_Motor"> {{motor.Motor}}</option>
+
+                                    </select> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="artDescripcion" class="col-sm-3 col-form-label">Imagen</label>
+                            <div class="col-xs-12">
+
+                                <!-- <select required class="custom-select " class="form-control" name="motor" #motor="ngModel" [(ngModel)]="servicio.selectedVehiculo.ID_Motor">
+                                            <option disabled selected>Elegir un tipo de motor</option>
+                                            <option *ngFor="let motor of servicio.MotorList" [value]="motor.ID_Motor"> {{motor.Motor}}</option>
+
+                                    </select> -->
+                            </div>
+                        </div>
+
+
+                        <div class="text-right">
+                            <!-- [disabled]="VehiculosAgregarForm.invalid"  -->
+                            <button type="submit" class="btn btn-primary ">Registrar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
