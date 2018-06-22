@@ -1,7 +1,7 @@
 export class Cliente {
-  ID_Cliente: number;
+  ClientID?: number;
   Name: string;
-  Cedula: string;
-  Cuenta_Contable: number;
-  Estado: string;
+  Document: string;
+  AccountingAccount: number;
+  ClientStatus: number;
 }

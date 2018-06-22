@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cliente } from './cliente.modelo';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 
 import { Response, RequestOptions, RequestMethod } from '@angular/http';
@@ -12,34 +12,54 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClienteService {
-  web = 'http://localhost:58175/';
-  ClienteList: Cliente[];
-  cliente: Cliente = {
-    ID_Cliente: null,
-    Name: '',
-    Cedula: '',
-    Cuenta_Contable: null,
-    Estado: ''
+  // web = 'http://localhost:58175/';
+
+  Clientes: any;
+    selectedcliente: Cliente = {
+    ClientID: null,
+    Name: null,
+    Document: null,
+    AccountingAccount: null,
+    ClientStatus: null
   };
 
   constructor(private http: HttpClient) {
 
    }
 
-  // Servicios
-
-  postClient(emp: Cliente) {
-    // tslint:disable-next-line:prefer-const
-    let body = JSON.stringify(emp);
-      // tslint:disable-next-line:prefer-const
-    let headerOptions = new HttpHeaders().set('Content-Type', 'application/json');
-
-    return this.http.post(this.web + ' api/Clients', body, {headers: headerOptions});
-}
+ // Servicios
 
 GetClient() {
-   return this.http.get('http://localhost:58175/api/Clients');
+
+  return this.http.get('http://localhost:51516/api/Clients').subscribe(data => {
+   this.Clientes = data;
+
+ });
 }
+  postClient(client: Cliente): Observable<any> {
+    // tslint:disable-next-line:prefer-const
+    let json = JSON.stringify(client);
+    // tslint:disable-next-line:prefer-const
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post('http://localhost:51516/api/Clients', json, httpOptions);
+}
+DeleteClient( id: number) {
+  return this.http.delete('http://localhost:51516/api/Clients/' + id).subscribe();
+
+}
+PutClient(id , client): Observable<any> {
+  // tslint:disable-next-line:prefer-const
+  let json = JSON.stringify(client);
+  const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+   return this.http.put('http://localhost:51516/api/Clients/' + id, json, httpOptions);
+
+}
+
 
 
 }

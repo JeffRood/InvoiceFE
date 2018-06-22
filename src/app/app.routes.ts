@@ -1,20 +1,15 @@
 import {Routes , RouterModule} from '@angular/router';
-import { InicioComponent } from './Pages/inicio/inicio.component';
-import { EmpleadoComponent } from './Pages/empleado/empleado.component';
-import { ClienteComponent } from './Pages/cliente/cliente.component';
-import { ProductosComponent } from './Pages/productos/productos.component';
-import { FacturaComponent } from './Pages/factura/factura.component';
+
+import { LoginComponent } from './login/login/login.component';
+import { RegisterComponent } from './login/login/register.component';
+import { PageComponent } from './Pages/page.component';
 
 
 const appRoutes: Routes = [
-  {path: '', component: InicioComponent},
-  {path: 'inicio', component: InicioComponent},
-  {path: 'empleado', component: EmpleadoComponent},
-  {path: 'cliente', component: ClienteComponent},
-  {path: 'producto', component: ProductosComponent},
-  {path: 'factura', component: FacturaComponent},
-   {path: '**', component: InicioComponent},
 
+   {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+   {path: '**', component: LoginComponent}
 
 ];
 
