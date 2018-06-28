@@ -1,1 +1,231 @@
-<!-- <div class=""></div> -->
+<div>
+    <div>
+        <button disabled accesskey="c" type="button" class="btn facturaEmpleadoBtn">Empleado</button>
+
+
+        <select class="facturaEmpleadoSelect">
+              <option disabled>Seleccione un Empleado</option>
+              <option *ngFor=" let empleado of servicioEmpleado.Empleado"  [value]= "empleado.EmployeeID">
+                <div>
+                {{empleado.Name}}
+              </div>
+                </option>
+
+            </select>
+    </div>
+    <div>
+        <button disabled type="button" class="btn facturaClienteBtn">Cliente</button>
+
+
+        <select class="facturaClienteSelect">
+              <option disabled>Seleccione un Cliente</option>
+              <option   *ngFor=" let cliente of servicioCliente.Clientes" [value]= "cliente.ClientID"> {{cliente.Name}}</option>
+
+            </select>
+        <div class="btnnewcliente">
+            <div class="col-md-6">
+                <button (click)="resetForm(FacturaAgregarProducto)" type="button" class="btn btn-success waves-effect waves-light m-r-10" data-toggle="modal" data-target="#Agregar">
+                <i class="fa fa-plus"></i>  Insertar Producto
+              </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+<table class="table table-sm table-hover cdcliente ">
+    <thead>
+        <tr>
+
+            <th>Producto</th>
+            <th>Precio</th>
+            <th> Cantidad </th>
+            <th>Total</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let factura of ListaFactura; let i = index">
+        <tr>
+            <td>{{factura.Descripcion}}</td>
+            <td>{{factura.Precio | currency}}</td>
+            <td>{{factura.Cantidad}}</td>
+            <td>{{factura.Precio * factura.Cantidad | currency}}</td>
+
+            <td>
+                <!-- =====================
+                    Editar
+          ===================== -->
+                <button class="btn btn-primary" data-toggle="modal" data-target="#Actualizar" (click)="ActualizarProducto(factura)">
+            <i class="fa fa-edit"></i> Editar
+          </button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-r-10"> <i class="fa fa-trash" > </i> Borrar
+
+      </button>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+<button type="button" class="btn money waves-effect waves-light m-r-10"> <i class="fa fa-dollar-sign" > </i>
+  Facturar
+
+</button>
+<!-- <form [formGroup]="myForm">
+
+    <div formArrayName="phones">
+
+        <div *ngFor="let phone of phoneForms.controls; let i=index" [formGroupName]="i">
+
+            <input formControlName="area">
+            <input formControlName="prefix">
+            <input formControlName="line">
+
+            <button (click)="deletePhone(i)">Delete</button>
+
+        </div>
+    </div>
+
+    <button (click)="addPhone()">Add Phone Number</button>
+
+</form> -->
+
+<!-- =============================================
+Insertar Un Producto
+============================================= -->
+
+
+
+<div class="modal fade" id="Agregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clienteTitleLabel">Seleccione Un Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form ngNativeValidate class="form-material" #FacturaAgregarProducto="ngForm">
+                    <!--<input type="hidden" required class="form-control" name="ClientID" #ClientID="ngModel" [(ngModel)]="servicioProducto.selectedProducto.ProductID">-->
+                    <div>
+                        <button disabled type="button" class="btn facturabtnModalProducto">Producto</button>
+
+
+                        <select class="facturaModalSelect" (change)="verId(servicioProducto.selectedProducto.ProductID)" #ProductID="ngModel" [(ngModel)]="servicioProducto.selectedProducto.ProductID" name="ProductID">
+                            <option disabled>Seleccione un Producto</option>
+                            <option  *ngFor="let Producto of servicioProducto.Producto; "  [value]= "Producto.ProductID" selected=""> {{Producto.Description}}</option>
+
+                          </select>
+
+
+
+                        <div class="form-group row">
+
+                            <label for="artDescripcion" class="col-sm-3 col-form-label">Precio</label>
+                            <div class="col-xs-12">
+
+                                <input *ngIf="!producto" disabled required class="form-control" class="form-control" name="Price" [value]="0">
+                                <input *ngIf="producto" disabled required class="form-control" class="form-control" name="Price" [value]="producto.Price | currency ">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+
+                            <label for="artDescripcion" class="col-sm-3 col-form-label">Cantidad</label>
+                            <div class="col-xs-12">
+
+                                <input type="number" max="23" min="0" required class="form-control " class="form-control " name="Cantidad" ngModel #Cantidad>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+
+                        <label for="artDescripcion " class="col-sm-3 col-form-label ">Total</label>
+                        <div class="col-xs-12 ">
+
+
+                            <input disabled required class="form-control " class="form-control " name="Price " [value]="producto.Price * Cantidad.value | currency ">
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <!-- (click)="AgregarEmpleado(FacturaAgregarProducto) "  -->
+                        <button [disabled]="FacturaAgregarProducto.invalid " type="button " data-dismiss="modal" (click)="agregarProductoFactura(FacturaAgregarProducto)" class="btn btn-danger ">Agregar al Carrito</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!--
+============================================
+Actualizar  Modal
+=============================================  -->
+<div class="modal fade" id="Actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clienteTitleLabel">Actualizar Factura </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form ngNativeValidate class="form-material" #ProductoActualizarForm="ngForm" *ngFor="let factura of ListaFactura">
+
+
+                    <div class="form-group row">
+                        <label for="artDescripcion" class="col-sm-3 col-form-label">Descripcion</label>
+                        <div class="col-xs-12">
+
+
+                            <input disabled class="form-control" name="Descripcion" #Descripcion="ngModel" [(ngModel)]="factura.Descripcion">
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="artDescripcion" class="col-sm-3 col-form-label">Precio</label>
+                        <div class="col-xs-12">
+
+                            <input disabled class="form-control" name="Precio" #Precio="ngModel" [(ngModel)]="factura.Precio">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="artDescripcion" class="col-sm-4 col-form-label">Cantidad</label>
+                        <div class="col-xs-10">
+                            <input required type="number" min="0" class="form-control" name="Cantidad" #Cantidad="ngModel" [(ngModel)]="factura.Cantidad">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="artDescripcion" class="col-sm-4 col-form-label">Total</label>
+                        <div class="col-xs-10">
+                            <input disabled class="form-control" name="Total" [value]="producto.Price * Cantidad.value | currency ">
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button [disabled]="ProductoActualizarForm.invalid" type="button" data-dismiss="modal" class="btn btn-primary">Registrar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

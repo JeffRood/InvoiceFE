@@ -47,7 +47,11 @@ GetClient() {
     return this.http.post('http://localhost:51516/api/Clients', json, httpOptions);
 }
 DeleteClient( id: number) {
-  return this.http.delete('http://localhost:51516/api/Clients/' + id).subscribe();
+  return this.http.delete('http://localhost:51516/api/Clients/' + id).subscribe(
+ data => {
+  this.GetClient();
+ }
+  );
 
 }
 PutClient(id , client): Observable<any> {

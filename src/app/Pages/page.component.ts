@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from './cliente/cliente.service';
+import { EmpleadoService } from './empleado/empleado.service';
+import { ProductoService } from './productos/producto.service';
 
 @Component({
   selector: 'app-page',
@@ -7,10 +9,16 @@ import { ClienteService } from './cliente/cliente.service';
 })
 export class PageComponent implements OnInit {
 
-  constructor(public servicio: ClienteService) { }
+  constructor(public servicioEmpleado: EmpleadoService,
+    public servicioCliente: ClienteService,
+    public servicioProducto: ProductoService,
+  ) { }
 
-  ngOnInit() {
-
+  ngOnInit(
+    ) {
+      this.servicioProducto.GetProduct();
+    this.servicioEmpleado.GetEmployee();
+this.servicioCliente.GetClient();
   }
 
 }
