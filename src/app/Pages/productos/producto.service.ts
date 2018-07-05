@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductoService {
-  Producto: any;
+  Producto: any = [];
   ElProducto: any;
   selectedProducto: Producto = {
     ProductID: null,
@@ -18,11 +18,21 @@ export class ProductoService {
   constructor(private http: HttpClient) { }
 
   GetProduct() {
+    // tslint:disable-next-line:no-debugger
 
     return this.http.get('http://localhost:51516/api/Products').subscribe(data => {
      this.Producto = data;
-
+     console.log(this.Producto);
    });
+  //  GetProduct() {
+  //   // tslint:disable-next-line:no-debugger
+  //   debugger;
+  //   return this.http.get('http://localhost:51516/api/Products').subscribe(data => {
+  //    this.Producto = data;
+
+  //  });
+
+
   }
 
  GetOneProduct(id: number) {
