@@ -5,17 +5,24 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductoService {
+
   Producto: any = [];
   ElProducto: any;
+
+
   selectedProducto: Producto = {
     ProductID: null,
     Description: null,
     Price: null,
-    Stock: null,
+    Stock: null
+  };
 
-};
+
   constructor(private http: HttpClient) { }
+
+
 
   GetProduct() {
     // tslint:disable-next-line:no-debugger
