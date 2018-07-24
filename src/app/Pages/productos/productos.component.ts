@@ -5,13 +5,16 @@ import { Producto } from './producto.modelo';
 import { ProductoService } from './producto.service';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import Swal from 'sweetalert2';
+import { PagesService } from '../pages.service';
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html'
 })
 export class ProductosComponent implements OnInit {
 
-  constructor(public servicio: ProductoService) { }
+  constructor(public servicio: ProductoService,
+              public All: PagesService) { }
 
   ngOnInit() {
     this.servicio.GetProduct();
@@ -83,5 +86,9 @@ export class ProductosComponent implements OnInit {
       Stock: null,
     };
   }
+  }
+
+  excel() {
+  this.All.exportAsExcelFile(this.servicio.Producto, 'VALE');
   }
 }

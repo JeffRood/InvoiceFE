@@ -16,3 +16,17 @@ export class Factura {
   Date: Time;
   Remark: string;
 }
+
+
+export interface IFactura {
+  EmployeeID: number;
+  ClientID: number;
+  Date: Date;
+  Remark: string;
+}
+
+export interface IFacturaDetail {
+  DetailID: number;
+  ProductID: number;
+  Quantity: number;
+}

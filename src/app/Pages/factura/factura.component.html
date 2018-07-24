@@ -3,9 +3,9 @@
         <button disabled accesskey="c" type="button" class="btn facturaEmpleadoBtn">Empleado</button>
 
 
-        <select class="facturaEmpleadoSelect">
+        <select (change)="asignarempleado(servicioEmpleado.selectedEmpleado.EmployeeID)" class="facturaEmpleadoSelect" #EmployeeID="ngModel" [(ngModel)]="servicioEmpleado.selectedEmpleado.EmployeeID" name="EmployeeID">
               <option disabled>Seleccione un Empleado</option>
-              <option *ngFor=" let empleado of servicioEmpleado.Empleado"  [value]= "empleado.EmployeeID">
+              <option *ngFor="let empleado of servicioEmpleado.Empleado"  [value]="empleado.EmployeeID" selected="" >
                 <div>
                 {{empleado.Name}}
               </div>
@@ -17,9 +17,11 @@
         <button disabled type="button" class="btn facturaClienteBtn">Cliente</button>
 
 
-        <select class="facturaClienteSelect">
+        <select (change)="asignarCliente(servicioCliente.selectedcliente.ClientID)" class="facturaClienteSelect" #ClientID="ngModel" [(ngModel)]="servicioCliente.selectedcliente.ClientID" name="ClientID">
               <option disabled>Seleccione un Cliente</option>
-              <option   *ngFor=" let cliente of servicioCliente.Clientes" [value]= "cliente.ClientID"> {{cliente.Name}}</option>
+              <option *ngFor=" let cliente of servicioCliente.Clientes" [value]= "cliente.ClientID"  selected="" >
+                {{cliente.Name}}
+              </option>
 
             </select>
         <div class="btnnewcliente">
@@ -56,9 +58,9 @@
     <tbody *ngFor="let factura of ListaFactura; let i = index">
         <tr>
             <td>{{factura.Descripcion}}</td>
-            <td>{{factura.Precio | currency}}</td>
+            <td>{{factura?.Precio | currency}}</td>
             <td>{{factura.Cantidad}}</td>
-            <td>{{factura.Precio * factura.Cantidad | currency}}</td>
+            <td>{{factura?.Precio * factura?.Cantidad | currency}}</td>
 
             <td>
                 <!-- =====================
@@ -75,7 +77,7 @@
 
 </table>
 
-<button type="button" class="btn money waves-effect waves-light m-r-10"> <i class="fa fa-dollar-sign" > </i>
+<button (click)="Facturar(ListaFactura )" type="button" class="btn money waves-effect waves-light m-r-10"> <i class="fa fa-dollar-sign" > </i>
 
   Facturar
 
@@ -102,9 +104,6 @@
 <!-- =============================================
 Insertar Un Producto
 ============================================= -->
-
-
-
 <div class="modal fade" id="Agregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -123,7 +122,7 @@ Insertar Un Producto
 
                         <select class="facturaModalSelect" (change)="verId(servicioProducto.selectedProducto.ProductID)" #ProductID="ngModel" [(ngModel)]="servicioProducto.selectedProducto.ProductID" name="ProductID">
                             <option disabled>Seleccione un Producto</option>
-                            <option  *ngFor="let Producto of servicioProducto.Producto"  [value]= "Producto.ProductID" selected=""  > {{Producto.Description}} </option>
+                            <option  *ngFor="let Producto of servicioProducto.Producto"  [value]= "Producto.ProductID" selected=""> {{Producto.Description}} </option>
                           </select>
 
 
@@ -134,7 +133,7 @@ Insertar Un Producto
                             <div class="col-xs-12">
 
                                 <input *ngIf="!producto" disabled required class="form-control" class="form-control" name="Price" [value]="0">
-                                <input *ngIf="producto" disabled required class="form-control" class="form-control" name="Price" [value]="producto.Price | currency ">
+                                <input *ngIf="producto" disabled required class="form-control" class="form-control" name="Price" [value]="producto?.Price | currency ">
                             </div>
                         </div>
 
@@ -144,16 +143,17 @@ Insertar Un Producto
                             <label for="artDescripcion" class="col-sm-3 col-form-label">Cantidad</label>
                             <div class="col-xs-12">
 
-                                <input type="number" max="23" min="0" required class="form-control " class="form-control " name="Cantidad" ngModel #Cantidad>
+                                <input type="number" max="producto.Stock" min="0" required class="form-control " class="form-control " name="Cantidad" ngModel #Cantidad>
 
                             </div>
                         </div>
+
                     </div>
                     <div class="form-group row ">
 
                         <label for="artDescripcion " class="col-sm-3 col-form-label ">Total</label>
                         <div class="col-xs-12 ">
-                            <input type="text" disabled required class="form-control " class="form-control " name="Price " [value]="producto.Price * FacturaAgregarProducto.value.Cantidad | currency ">
+                            <input type="text" disabled required class="form-control " class="form-control " [value]="producto?.Price * FacturaAgregarProducto.value?.Cantidad | currency ">
                         </div>
                     </div>
 
@@ -217,7 +217,7 @@ Actualizar  Modal
                     <div class="form-group row">
                         <label for="artDescripcion" class="col-sm-4 col-form-label">Total</label>
                         <div class="col-xs-10">
-                            <input class="form-control" name="Total" [value]="this.editFactura.Precio * this.editFactura.Cantidad | currency " [disabled]="this.editFactura.Precio">
+                            <input class="form-control" name="Total" [value]="this.editFactura?.Precio * this.editFactura.Cantidad | currency " [disabled]="this.editFactura?.Precio">
                         </div>
                     </div>
 

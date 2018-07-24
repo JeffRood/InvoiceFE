@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { Producto } from './producto.modelo';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+// ------- EXCEL -------------
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
 @Injectable({
   providedIn: 'root'
 })
@@ -74,4 +80,9 @@ PutProduct(id , prod): Observable<any> {
 }
 
 
+
 }
+
+
+
+

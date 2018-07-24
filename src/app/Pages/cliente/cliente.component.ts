@@ -5,6 +5,7 @@ import { Cliente } from './cliente.modelo';
 import { ClienteService } from './cliente.service';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import Swal from 'sweetalert2';
+import { PagesService } from '../pages.service';
 
 @Component({
   selector: 'app-cliente',
@@ -13,7 +14,8 @@ import Swal from 'sweetalert2';
 export class ClienteComponent implements OnInit {
   forma: NgForm;
 
-  constructor(public servicio: ClienteService) { }
+  constructor(public servicio: ClienteService,
+    public All: PagesService) { }
 
   ngOnInit() {
 
@@ -115,85 +117,10 @@ EliminarCliente(id: number) {
     };
   }
   }
-//   validarCedula(cedula: string) {
 
-//    console.log(cedula);
-//     let calculo: number;
-//     // tslint:disable-next-line:no-inferrable-types
-//     let total: number = 0;
 
-//     // tslint:disable-next-line:prefer-const
-//     let vCedula = cedula.replace(/-/g, '');
-//     let Veri = 0;
-//       // tslint:disable-next-line:prefer-const
-//     let longCed = vCedula.trim().length;
-//     // tslint:disable-next-line:prefer-const
-//     let verificador = Number(vCedula.substr(vCedula.length - 1, 1));
-//     // tslint:disable-next-line:prefer-const
-//     let digito: number[] = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1];
-
-//     if (longCed !== 11) {
-//       return false;
-//     }
-//     for (let i = 1; i <= 10; i++) {
-//       calculo = Number(vCedula.substr(i - 1, 1)) * digito[i - 1];
-
-//       if (calculo < 10) {
-//         total += calculo;
-//       } else {
-//         total += Number(calculo.toString().substr(0, 1)) + Number(calculo.toString().substr(1, 1));
-//       }
-//       Veri = 10 - total % 10;
-//     }
-//     if (Veri === 10 || Veri === verificador) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-
-// }
+  // ----- Excel ----
+  excel() {
+    this.All.exportAsExcelFile(this.servicio.Clientes, 'VALE');
+    }
 }
-
-
-// registrarCliente( forma: FormGroup) {
-
-//   try {
-//     if (this._ClientesService.controlID === true) {
-//       console.log('Estoy en el post');
-//       if (this.validarCedula(this.forma.value.cedula) === true) {
-//         console.log(this.forma.value);
-//         try {
-//           this._ClientesService.postClientes(forma.value)
-//             .subscribe(data => {
-//               swal('Cliente registrado', '', 'success');
-//               this.resetForm(forma);
-//             });
-//         } catch {
-//             swal('Error al registrar cliente', '', 'error');
-//           }
-//       } else {
-//         swal('Cedula invalida', 'porfavor digite una cedula valida', 'error');
-//       }
-
-//     } else {
-
-//       try {
-//       console.log('Estoy en el put');
-//       if (this.validarCedula(this.forma.value.cedula) === true) {
-//         this._ClientesService.putCliente(forma.value.clienteID, forma.value)
-//     .subscribe(data => {
-//       swal('Articulo actualizado', '', 'success');
-//       this.resetForm(forma);
-//       this._ClientesService.GetClientes();
-//     });
-//       } else {
-//         swal('Cedula invalida', 'porfavor digite una cedula valida', 'error');
-//       }
-//       } catch {
-//         swal('Error al actualizar cliente', '', 'error');
-//       }
-//   }
-//   } catch {
-//     swal('Ha ocurrido un error', '', 'error');
-//   }
-// }

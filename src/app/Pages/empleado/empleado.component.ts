@@ -5,13 +5,15 @@ import { Empleado } from './empleado.modelo';
 import { EmpleadoService } from './empleado.service';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import Swal from 'sweetalert2';
+import { PagesService } from '../pages.service';
 @Component({
   selector: 'app-empleado',
   templateUrl: './empleado.component.html'
 })
 export class EmpleadoComponent implements OnInit {
 
-  constructor(public servicio: EmpleadoService) { }
+  constructor(public servicio: EmpleadoService,
+    public All: PagesService) { }
 
   ngOnInit(  ) {
 
@@ -87,5 +89,11 @@ export class EmpleadoComponent implements OnInit {
     };
   }
   }
+
+
+  // ----- Excel ----
+  excel() {
+    this.All.exportAsExcelFile(this.servicio.Empleado, 'VALE');
+    }
 
 }

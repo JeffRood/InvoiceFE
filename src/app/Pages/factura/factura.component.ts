@@ -8,6 +8,9 @@ import { ClienteService } from '../cliente/cliente.service';
 import { ProductoService } from '../productos/producto.service';
 import { FacturaService } from './factura.service';
 import { Producto } from '../productos/producto.modelo';
+import {IFactura, IFacturaDetail } from './factura.modelo';
+
+
 
 @Component({
   selector: 'app-factura',
@@ -15,8 +18,14 @@ import { Producto } from '../productos/producto.modelo';
 })
 export class FacturaComponent implements OnInit {
     // tslint:disable-next-line:no-inferrable-types
-  total: number = 0 ;
+factura: IFactura;
+facturaDetail: IFacturaDetail;
+   precio = 0;
+  total = 0 ;
+  EmpleadoID = 0;
+  ClienteID = 0;
     producto: Producto;
+    stock = 0;
     ID = 0 ;
     myForm: FormGroup;
     idTemporal: number;
@@ -33,11 +42,15 @@ export class FacturaComponent implements OnInit {
     public data: FormBuilder,
     public servicioProducto: ProductoService,
     public servicioEmpleado: EmpleadoService,
-    public servicioCliente: ClienteService ) { }
+    public servicioCliente: ClienteService ) {
+
+    }
 
   ngOnInit() {
     this.ListaFactura;
     this.total = 0;
+    this.EmpleadoID = 0;
+    this.ClienteID = 0;
   }
 
 
@@ -60,6 +73,9 @@ export class FacturaComponent implements OnInit {
  this.servicioProducto.GetOneProduct(id).subscribe(data => {
    this.producto = data  as Producto;
   });
+  this.stock = this.producto.Stock;
+  console.log(this.stock);
+
  }
 
 
@@ -77,6 +93,11 @@ export class FacturaComponent implements OnInit {
 
    let posicion = this.servicioProducto.Producto.map((e) => e.ProductID ).indexOf( this.producto.ProductID);
     this.servicioProducto.Producto.splice( posicion , 1);
+this.total = 0;
+    for (let i = 0; i <= this.ListaFactura.length; i++) {
+      this.total += this.ListaFactura[i].Precio * this.ListaFactura[i].Cantidad;
+
+    }
 
   }
 
@@ -112,6 +133,12 @@ export class FacturaComponent implements OnInit {
             debugger;
             this.ListaFactura.splice(i, 1);
             this.servicioProducto.Producto.push(this.producto);
+            this.total = 0;
+            // tslint:disable-next-line:no-shadowed-variable
+            for (let i = 0; i <= this.ListaFactura.length; i++) {
+              this.total += this.ListaFactura[i].Precio * this.ListaFactura[i].Cantidad;
+
+            }
               Swal(
                   'Borrado!',
                   'Tu registro ha sido eliminado.',
@@ -128,11 +155,49 @@ export class FacturaComponent implements OnInit {
                 'error'
               ); }
              });
+
+
   }
 
 ActualizarProducto(form: NgForm , i: number ) {
   debugger;
    this.ListaFactura[i] = form.value;
-  debugger;
+
+   this.total = 0;
+    // tslint:disable-next-line:no-shadowed-variable
+    for (let i = 0; i <= this.ListaFactura.length; i++) {
+      this.total += this.ListaFactura[i].Precio * this.ListaFactura[i].Cantidad;
+
+    }
+
+
   }
+
+Facturar(lista) {
+
+this.factura =  {
+  EmployeeID: this.EmpleadoID,
+  ClientID: this.ClienteID,
+  Date: new Date(Date.now()),
+  Remark: null
+};
+
+console.log(this.factura);
+console.log(lista);
+
+this.servicio.postClient(this.factura)
+.subscribe(data => console.log(data)
+);
+
 }
+
+asignarempleado(emp) {
+   this.EmpleadoID = emp;
+}
+asignarCliente(cli) {
+  this.ClienteID = cli;
+}
+}
+
+
+
