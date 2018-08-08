@@ -23,6 +23,7 @@ export interface IFactura {
   ClientID: number;
   Date: Date;
   Remark: string;
+  Details: FacturaDetail[];
 }
 
 export interface IFacturaDetail {

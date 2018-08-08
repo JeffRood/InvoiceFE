@@ -25,9 +25,9 @@ SelectedFactura: Factura = {
 };
   constructor(private http: HttpClient ) { }
 
-  postClient(client: any): Observable<any> {
+  postFactura(factura: any): Observable<any> {
     // tslint:disable-next-line:prefer-const
-    let json = JSON.stringify(client);
+    let json = JSON.stringify(factura);
     // tslint:disable-next-line:prefer-const
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })

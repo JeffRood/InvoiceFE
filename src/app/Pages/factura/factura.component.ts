@@ -30,6 +30,7 @@ facturaDetail: IFacturaDetail;
     myForm: FormGroup;
     idTemporal: number;
     ListaFactura = [];
+    ListaFacturaBD = [];
     editFactura = {
       index: 0,
       Descripcion: '',
@@ -89,7 +90,14 @@ facturaDetail: IFacturaDetail;
     'Precio' : this.producto.Price,
     'Cantidad' : cantidad
 };
+
+let ObFacBD = {
+  'ProductID' : this.producto.ProductID,
+  'Quantity' : cantidad
+};
+
    this.ListaFactura.push(objFac);
+   this.ListaFacturaBD.push(ObFacBD);
 
    let posicion = this.servicioProducto.Producto.map((e) => e.ProductID ).indexOf( this.producto.ProductID);
     this.servicioProducto.Producto.splice( posicion , 1);
@@ -132,6 +140,7 @@ this.total = 0;
           if (borrar.value) {
             debugger;
             this.ListaFactura.splice(i, 1);
+            this.ListaFacturaBD.splice(i, 1);
             this.servicioProducto.Producto.push(this.producto);
             this.total = 0;
             // tslint:disable-next-line:no-shadowed-variable
@@ -179,13 +188,14 @@ this.factura =  {
   EmployeeID: this.EmpleadoID,
   ClientID: this.ClienteID,
   Date: new Date(Date.now()),
-  Remark: null
+  Remark: null,
+  Details: this.ListaFacturaBD
 };
 
 console.log(this.factura);
 console.log(lista);
 
-this.servicio.postClient(this.factura)
+this.servicio.postFactura(this.factura)
 .subscribe(data => console.log(data)
 );
 
