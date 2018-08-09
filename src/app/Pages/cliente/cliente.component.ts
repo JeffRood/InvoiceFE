@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup } from '@angular/forms';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { Cliente } from './cliente.modelo';
 import { ClienteService } from './cliente.service';
@@ -123,4 +123,48 @@ EliminarCliente(id: number) {
   excel() {
     this.All.exportAsExcelFile(this.servicio.Clientes, 'VALE');
     }
+
+
+    validarCedula(control: any) {
+      debugger;
+      let cedula = control.value;
+      // return (group: FormGroup) => {
+      // let cant = group.controls[cedula].value;
+      // console.log(cedula);
+      let calculo: number;
+      let total: 0;
+
+      let vCedula = cedula.replace(/-/g, '');
+      let Veri = 0;
+
+      let longCed = vCedula.trim().length;
+      let verificador = Number(vCedula.substr(vCedula.length - 1, 1));
+      let digito: number[] = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1];
+
+      if (longCed !== 11) {
+      return {
+        Cedula: true
+      };
+      }
+      for (let i = 1; i <= 10; i++) {
+      calculo = Number(vCedula.substr(i - 1, 1)) * digito[i - 1];
+
+      if (calculo < 10) {
+      total += calculo;
+      } else {
+      total += Number(calculo.toString().substr(0, 1)) + Number(calculo.toString().substr(1, 1));
+      }
+      Veri = 10 - total % 10;
+      }
+      if (Veri === 10 || Veri === verificador) {
+        return {
+          Cedula: false
+        };
+      } else {
+        return {
+          Cedula: true
+        };
+      }
+      // };
+      }
 }

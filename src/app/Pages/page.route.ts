@@ -6,6 +6,8 @@ import { ProductosComponent } from './productos/productos.component';
 import { FacturaComponent } from './facturar/factura.component';
 import { PageComponent } from './page.component';
 import { FacturasComponent } from './facturas/facturas.component';
+import { ContabilidadComponent } from './contabilidad/contabilidad.component';
+
 
 
 const pageRoutes: Routes = [
@@ -18,6 +20,7 @@ const pageRoutes: Routes = [
   {path: 'producto', component: ProductosComponent},
   {path: 'factura', component: FacturaComponent},
   {path: 'fact', component: FacturasComponent},
+  {path: 'contabilidad', component: ContabilidadComponent},
 
    {path: '**', component: InicioComponent},
 

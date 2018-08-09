@@ -18,7 +18,7 @@ import { PAGE_ROUTES } from './page.route';
 import { PageComponent } from './page.component';
 
 import { FacturasComponent } from './facturas/facturas.component';
-
+import { ContabilidadComponent } from './contabilidad/contabilidad.component';
 
 
 // SERVICIOS!!!
@@ -44,8 +44,8 @@ InicioComponent,
 ClienteComponent,
 PageComponent,
 HeaderComponent,
-FacturasComponent
-
+FacturasComponent,
+ContabilidadComponent
 
   ],
   imports: [

@@ -31,3 +31,19 @@ export interface IFacturaDetail {
   ProductID: number;
   Quantity: number;
 }
+
+
+export interface IAsiento {
+  date: string;
+
+  description:	string;
+
+  auxiliaryId: number;
+
+  status:	number;
+
+  currencyId:	number;
+
+  exchangeRate:	number;
+
+}

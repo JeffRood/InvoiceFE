@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FacturaService } from '../facturar/factura.service';
 import { Factura } from '../facturar/factura.modelo';
 
+
 @Component({
   selector: 'app-facturas',
   templateUrl: './facturas.component.html'
 })
+
 export class FacturasComponent implements OnInit {
    Lista_Factura: any;
+
+   dia = Date();
   constructor( public servicio: FacturaService) { }
 
   ngOnInit() {
