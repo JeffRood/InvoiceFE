@@ -54,4 +54,8 @@ obtenerFactura() {
   return this.http.get('http://localhost:51516/api/Invoices');
 }
 
+obtenerDetalleFactura(id: number) {
+  return this.http.get('http://localhost:51516/api/Invoices/' + id );
+}
+
 }

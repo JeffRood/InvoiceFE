@@ -31,3 +31,17 @@ export interface IFacturaDetail {
   ProductID: number;
   Quantity: number;
 }
+
+export interface IFactura2 {
+ InvoiceID: number;
+ Date: string;
+ Cliente: string;
+ Empleado: string;
+}
+
+export interface FacturaDetalle {
+  Producto: string;
+  Precio: number;
+  Cantidad: number;
+  Total: number;
+}

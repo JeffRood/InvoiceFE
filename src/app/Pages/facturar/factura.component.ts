@@ -212,13 +212,11 @@ this.factura =  {
   Details: this.ListaFacturaBD
 };
 
-console.log(this.factura);
-console.log(lista);
 
 this.servicio.postFactura(this.factura)
 .subscribe(data => console.log(data)
 );
-
+location.reload();
 }
 
 asignarempleado(emp) {
