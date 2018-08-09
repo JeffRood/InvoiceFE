@@ -14,7 +14,6 @@ export class FacturaService {
     ProductID : null ,
     Quantity : null,
 };
-
 SelectedFactura: Factura = {
   InvoiceID: null,
   DetailID : null,
@@ -49,4 +48,10 @@ GenerarFactura(fac) {
     let url = 'http://localhost:51516/api/Invoices';
     return this.http.post(url, json, httpOptions);
 }
+
+
+obtenerFactura() {
+  return this.http.get('http://localhost:51516/api/Invoices');
+}
+
 }

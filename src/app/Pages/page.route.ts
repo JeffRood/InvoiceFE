@@ -3,8 +3,9 @@ import { InicioComponent } from './inicio/inicio.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { ProductosComponent } from './productos/productos.component';
-import { FacturaComponent } from './factura/factura.component';
+import { FacturaComponent } from './facturar/factura.component';
 import { PageComponent } from './page.component';
+import { FacturasComponent } from './facturas/facturas.component';
 
 
 const pageRoutes: Routes = [
@@ -16,6 +17,7 @@ const pageRoutes: Routes = [
   {path: 'cliente', component: ClienteComponent},
   {path: 'producto', component: ProductosComponent},
   {path: 'factura', component: FacturaComponent},
+  {path: 'fact', component: FacturasComponent},
 
    {path: '**', component: InicioComponent},
 

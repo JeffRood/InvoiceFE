@@ -1,6 +1,6 @@
-import { FacturaDetail } from './factura/factura.modelo';
+import { FacturaDetail } from './facturar/factura.modelo';
 import { HeaderComponent } from '../shared/header/header.component';
-import { FacturaComponent } from './factura/factura.component';
+import { FacturaComponent } from './facturar/factura.component';
 import { ProductosComponent } from './productos/productos.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,7 +17,7 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { PAGE_ROUTES } from './page.route';
 import { PageComponent } from './page.component';
 
-
+import { FacturasComponent } from './facturas/facturas.component';
 
 
 
@@ -43,7 +43,8 @@ EmpleadoComponent,
 InicioComponent,
 ClienteComponent,
 PageComponent,
-HeaderComponent
+HeaderComponent,
+FacturasComponent
 
 
   ],

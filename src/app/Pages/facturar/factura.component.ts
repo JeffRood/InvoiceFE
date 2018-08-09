@@ -31,6 +31,12 @@ facturaDetail: IFacturaDetail;
     idTemporal: number;
     ListaFactura = [];
     ListaFacturaBD = [];
+    editFacturaDB = {
+      index: 0,
+      ProductID: 0,
+      Quantity: 0,
+    };
+
     editFactura = {
       index: 0,
       Descripcion: '',
@@ -120,6 +126,16 @@ this.total = 0;
       Cantidad: this.ListaFactura[i].Cantidad
      };
 
+     this.editFacturaDB = this.ListaFacturaBD[i];
+     this.editFacturaDB = {
+      index: i,
+      ProductID: this.ListaFacturaBD[i].ProductID,
+      Quantity: this.ListaFacturaBD[i].Cantidad
+     };
+
+
+
+
   }
 
 
@@ -178,6 +194,10 @@ ActualizarProducto(form: NgForm , i: number ) {
       this.total += this.ListaFactura[i].Precio * this.ListaFactura[i].Cantidad;
 
     }
+
+
+
+     // tslint:disable-next-line:no-shadowed-variable
 
 
   }

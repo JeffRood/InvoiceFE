@@ -33,11 +33,13 @@ import { PageModule } from './Pages/page.module';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
