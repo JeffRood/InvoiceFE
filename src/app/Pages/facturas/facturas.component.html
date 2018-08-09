@@ -16,12 +16,11 @@
     <tbody *ngFor="let factura of Lista_Factura; let i = index">
         <tr>
 
-            <td> {{factura.Date}}</td>
-            <td> {{factura.EmployeeID}}</td>
-            <td> {{factura.ClientID}}</td>
+            <td> {{factura.Date | date:'longDate'}}</td>
+            <td> {{factura.Empleado}}</td>
+            <td> {{factura.Cliente}}</td>
             <td>
-
-                <button type="button" class="btn btn-secondary waves-effect waves-light m-r-10" data-toggle="modal" data-target="#detalle" (click)="Detalle(factura.InvoiceID)"> <i class="fa fa-eye" > </i>
+             <button type="button" class="btn btn-secondary waves-effect waves-light m-r-10" data-toggle="modal" data-target="#detalle" (click)="Detalle(factura.InvoiceID)"> <i class="fa fa-eye" > </i>
               </button>
 
             </td>
@@ -49,19 +48,47 @@ Detalle
       </button>
             </div>
             <div class="modal-body">
-                <form ngNativeValidate class="form-material" #DetalleFacturaForm="ngForm">
+                <table class="table table-sm table-hover cdcliente ">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th> Cantidad </th>
+                            <th> Total </th>
+                        </tr>
+                    </thead>
+                    <!--  -->
+                    <tbody *ngFor="let detalle of Detalle_Factura; let i = index">
+                        <tr>
+                
+                            <td> {{detalle.Producto}}</td>
+                            <td> {{detalle.Precio | currency: 'USA'}}</td>
+                            <td> {{detalle.Cantidad}}</td>
+                            <td> {{detalle.Total | currency:'USA'}}</td>
+                 
+                        </tr>
+                    </tbody>
+                
+                </table>
+            </div>
 
-                    <!-- <input type="hidden" required class="form-control" name="ProductID" #ProductID="ngModel" [(ngModel)]="servicio.selectedProducto.ProductID">
-                    <div class="form-group row">
-                        <label for="artDescripcion" class="col-sm-3 col-form-label">Descripcion</label>
-                        <div class="col-xs-12">
+        </div>
+    </div>
+</div>
+
+<!-- <form ngNativeValidate class="form-material" #DetalleFacturaForm="ngForm"> -->
+
+    <!-- <input type="hidden" required class="form-control" name="ProductID" #ProductID="ngModel" [(ngModel)]="servicio.selectedProducto.ProductID">
+    <div class="form-group row">
+        <label for="artDescripcion" class="col-sm-3 col-form-label">Descripcion</label>
+        <div class="col-xs-12">
 
 
-                            <input type="text" required class="form-control" name="Description" #Description="ngModel" [(ngModel)]="servicio.selectedProducto.Description">
+            <input type="text" required class="form-control" name="Description" #Description="ngModel" [(ngModel)]="servicio.selectedProducto.Description">
 
 
-                        </div>
-                    </div>
+        </div>
+    </div>
 
                     <div class="form-group row">
                         <label for="artDescripcion" class="col-sm-3 col-form-label">Precio</label>
@@ -144,30 +171,25 @@ Asiento Contable
                     <!-- <input type="hidden" required class="form-control" name="ProductID" #ProductID="ngModel" [(ngModel)]="servicio.selectedProducto.ProductID">
 
 
-                    <div class="form-group row">
-                        <label for="artDescripcion" class="col-sm-3 col-form-label">Precio</label>
-                        <div class="col-xs-12">
+    <div class="form-group row">
+        <label for="artDescripcion" class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-xs-12">
 
-                            <input type="number" required class="form-control" name="Price" #Price="ngModel" [(ngModel)]="servicio.selectedProducto.Price">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="artDescripcion" class="col-sm-4 col-form-label">Stock</label>
-                        <div class="col-xs-10">
-                            <input required type="number" class="form-control" name="Stock" #Stock="ngModel" [(ngModel)]="servicio.selectedProducto.Stock">
-                        </div>
-                    </div>
-
-
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button [disabled]="ProductoActualizarForm.invalid" type="button" (click)="ActualizarProducto(ProductoActualizarForm.value.ProductID,ProductoActualizarForm.value)" data-dismiss="modal" class="btn btn-primary">Registrar</button>
-                    </div> -->
-                </form>
-            </div>
-
+            <input type="number" required class="form-control" name="Price" #Price="ngModel" [(ngModel)]="servicio.selectedProducto.Price">
         </div>
     </div>
-</div>
+
+    <div class="form-group row">
+        <label for="artDescripcion" class="col-sm-4 col-form-label">Stock</label>
+        <div class="col-xs-10">
+            <input required type="number" class="form-control" name="Stock" #Stock="ngModel" [(ngModel)]="servicio.selectedProducto.Stock">
+        </div>
+    </div>
+
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button [disabled]="ProductoActualizarForm.invalid" type="button" (click)="ActualizarProducto(ProductoActualizarForm.value.ProductID,ProductoActualizarForm.value)" data-dismiss="modal" class="btn btn-primary">Registrar</button>
+    </div> -->
+<!-- </form> -->

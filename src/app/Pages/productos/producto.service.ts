@@ -35,7 +35,6 @@ export class ProductoService {
 
     return this.http.get('http://localhost:51516/api/Products').subscribe(data => {
      this.Producto = data;
-     console.log(this.Producto);
    });
   //  GetProduct() {
   //   // tslint:disable-next-line:no-debugger
