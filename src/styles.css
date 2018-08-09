@@ -720,5 +720,9 @@ body {
 }
 
 .asiento {
-    margin-left: 1200px;
+    background-image: url(./assets/images/accounts.svg);
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+    padding: 18px 22px;
 }

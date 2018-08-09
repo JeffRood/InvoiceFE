@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 // ------- EXCEL -------------
 import * as FileSaver from 'file-saver';
-import * as XLSX from 'xlsx';
+import * as XLSX from 'xlsx/types';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 @Injectable({

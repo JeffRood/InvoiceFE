@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FacturaDetail, Factura } from './factura.modelo';
-import { Headers } from '../../../../node_modules/@angular/http';
+import { FacturaDetail, Factura, IAsiento } from './factura.modelo';
+import { Headers } from '@angular/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +21,19 @@ SelectedFactura: Factura = {
   ClientID : null,
   Date: null,
   Remark : null,
+};
+
+selectedAsiento: IAsiento  =  {
+  date: null,
+
+  description:	null,
+
+  auxiliaryId: null,
+
+  status:	null,
+  currencyId:	null,
+
+  exchangeRate:	null
 };
   constructor(private http: HttpClient ) { }
 
@@ -57,5 +70,18 @@ obtenerFactura() {
 obtenerDetalleFactura(id: number) {
   return this.http.get('http://localhost:51516/api/Invoices/' + id );
 }
+
+
+Contabilidad(asiento) {
+    // tslint:disable-next-line:prefer-const
+    let json = JSON.stringify(asiento);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    let url = 'https://simpleaccountingapp-api.azurewebsites.net//journalEntries';
+    return this.http.post(url, json, httpOptions);
+}
+
 
 }

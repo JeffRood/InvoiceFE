@@ -1,3 +1,6 @@
+<button type="button" class="btn btn-primary waves-effect waves-light m-r-10 asiento" data-toggle="modal" data-target="#asiento"> <i class="fa fa-accountting" > Enviar Asiento </i>
+</button>
+
 <table class="table table-sm table-hover cdcliente ">
     <thead>
         <tr>
@@ -5,8 +8,8 @@
             <th>Fecha</th>
             <th>Empleado</th>
             <th> Cliente </th>
-            <th> Detalle </th>
-            <th>Asiento</th>
+            <th> Details </th>
+
         </tr>
     </thead>
     <!--  -->
@@ -17,19 +20,16 @@
             <td> {{factura.Empleado}}</td>
             <td> {{factura.Cliente}}</td>
             <td>
-                <button type="button" class="btn btn-secondary waves-effect waves-light m-r-10" data-toggle="modal" data-target="#detalle" (click)="Detalle(factura.InvoiceID)"> <i class="fa fa-eye" > </i>
+             <button type="button" class="btn btn-secondary waves-effect waves-light m-r-10" data-toggle="modal" data-target="#detalle" (click)="Detalle(factura.InvoiceID)"> <i class="fa fa-eye" > </i>
               </button>
 
-            </td>
-            <td>
-
-                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10 asiento " data-toggle="modal" data-target="#asiento">
-                  </button>
             </td>
         </tr>
     </tbody>
 
 </table>
+
+
 
 
 
@@ -48,7 +48,6 @@ Detalle
       </button>
             </div>
             <div class="modal-body">
-
                 <table class="table table-sm table-hover cdcliente ">
                     <thead>
                         <tr>
@@ -61,17 +60,15 @@ Detalle
                     <!--  -->
                     <tbody *ngFor="let detalle of Detalle_Factura; let i = index">
                         <tr>
-
+                
                             <td> {{detalle.Producto}}</td>
                             <td> {{detalle.Precio | currency: 'USA'}}</td>
                             <td> {{detalle.Cantidad}}</td>
                             <td> {{detalle.Total | currency:'USA'}}</td>
-
+                 
                         </tr>
-
-
                     </tbody>
-
+                
                 </table>
             </div>
 
@@ -81,7 +78,7 @@ Detalle
 
 <!-- <form ngNativeValidate class="form-material" #DetalleFacturaForm="ngForm"> -->
 
-<!-- <input type="hidden" required class="form-control" name="ProductID" #ProductID="ngModel" [(ngModel)]="servicio.selectedProducto.ProductID">
+    <!-- <input type="hidden" required class="form-control" name="ProductID" #ProductID="ngModel" [(ngModel)]="servicio.selectedProducto.ProductID">
     <div class="form-group row">
         <label for="artDescripcion" class="col-sm-3 col-form-label">Descripcion</label>
         <div class="col-xs-12">
@@ -92,6 +89,76 @@ Detalle
 
         </div>
     </div>
+
+    <div class="form-group row">
+        <label for="artDescripcion" class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-xs-12">
+
+            <input type="number" required class="form-control" name="Price" #Price="ngModel" [(ngModel)]="servicio.selectedProducto.Price">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="artDescripcion" class="col-sm-4 col-form-label">Stock</label>
+        <div class="col-xs-10">
+            <input required type="number" class="form-control" name="Stock" #Stock="ngModel" [(ngModel)]="servicio.selectedProducto.Stock">
+        </div>
+    </div>
+<<<<<<< HEAD
+</div>
+
+
+
+
+<!--
+============================================
+Asiento Contable
+=============================================  -->
+<div class="modal fade" id="asiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clienteTitleLabel">Detalle Factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body">
+                <form ngNativeValidate class="form-material" #DetalleFacturaForm="ngForm">
+
+
+
+
+
+
+                    <div class="form-group row">
+                        <label for="artDescripcion" class="col-sm-3 col-form-label">Fecha</label>
+                        <div class="col-xs-12">
+
+
+                            <input disabled type="text" required class="form-control" [value]="dia | date:'shortDate'">
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="artDescripcion" class="col-sm-3 col-form-label">Descripcion</label>
+                        <div class="col-xs-12">
+
+
+                            <input type="text" required class="form-control">
+
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button [disabled]="DetalleFacturaForm.invalid" type="button" data-dismiss="modal" class="btn btn-primary">Enviar Asiendo</button>
+                    </div>
+                    <!-- <input type="hidden" required class="form-control" name="ProductID" #ProductID="ngModel" [(ngModel)]="servicio.selectedProducto.ProductID">
+
 
                     <div class="form-group row">
                         <label for="artDescripcion" class="col-sm-3 col-form-label">Precio</label>
@@ -114,55 +181,19 @@ Detalle
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button [disabled]="ProductoActualizarForm.invalid" type="button" (click)="ActualizarProducto(ProductoActualizarForm.value.ProductID,ProductoActualizarForm.value)" data-dismiss="modal" class="btn btn-primary">Registrar</button>
                     </div> -->
-
-
-
-
-<!--
-============================================
-Asiento Contable
-=============================================  -->
-<div class="modal fade" id="asiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="clienteTitleLabel">Asiento Contable</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-            </div>
-            <div class="modal-body">
-                <form ngNativeValidate class="form-material" #AsientoForm="ngForm">
-
-                    <!-- <input type="hidden" required class="form-control" name="ProductID" #ProductID="ngModel" [(ngModel)]="servicio.selectedProducto.ProductID"> -->
-
-                    <div class="form-group row">
-                        <label for="artDescripcion" class="col-sm-3 col-form-label">Fecha</label>
-                        <div class="col-xs-12">
-
-
-                            <input disabled type="text" required class="form-control" [value]="dia | date:'shortDate'">
-
-
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label for="artDescripcion" class="col-sm-3 col-form-label">Descripcion</label>
-                        <div class="col-xs-12">
-
-
-                            <input type="text" required class="form-control" name="Description" ngModel #Description>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button (click)="contabilidad(AsientoForm)" type="button" data-dismiss="modal" class="btn btn-primary">Enviar Asiendo </button>
-                    </div>
                 </form>
             </div>
 
         </div>
     </div>
 </div>
+=======
+
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button [disabled]="ProductoActualizarForm.invalid" type="button" (click)="ActualizarProducto(ProductoActualizarForm.value.ProductID,ProductoActualizarForm.value)" data-dismiss="modal" class="btn btn-primary">Registrar</button>
+    </div> -->
+<!-- </form> -->
+>>>>>>> ebe5aea3b2faa8c067e7353cc2641bd1e6f30db9

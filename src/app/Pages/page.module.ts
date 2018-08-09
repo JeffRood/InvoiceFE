@@ -19,6 +19,8 @@ import { PageComponent } from './page.component';
 
 import { FacturasComponent } from './facturas/facturas.component';
 import { ContabilidadComponent } from './contabilidad/contabilidad.component';
+import { FiltrarPipe } from './Pipe';
+import { FilterPipe } from './filter.pipe';
 
 
 // SERVICIOS!!!
@@ -45,7 +47,9 @@ ClienteComponent,
 PageComponent,
 HeaderComponent,
 FacturasComponent,
-ContabilidadComponent
+ContabilidadComponent,
+FiltrarPipe,
+FilterPipe
 
   ],
   imports: [

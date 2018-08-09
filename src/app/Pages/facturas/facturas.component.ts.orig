@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { FacturaService } from '../facturar/factura.service';
+import { Factura, IFactura2, FacturaDetalle } from '../facturar/factura.modelo';
+
+
+@Component({
+  selector: 'app-facturas',
+  templateUrl: './facturas.component.html'
+})
+
+export class FacturasComponent implements OnInit {
+<<<<<<< HEAD
+   Lista_Factura: any;
+
+   dia = Date();
+=======
+   Lista_Factura: IFactura2;
+   Detalle_Factura: FacturaDetalle;
+>>>>>>> ebe5aea3b2faa8c067e7353cc2641bd1e6f30db9
+  constructor( public servicio: FacturaService) { }
+
+  ngOnInit() {
+  this.servicio.obtenerFactura().subscribe(data => {
+   this.Lista_Factura = data as IFactura2;
+  });
+  }
+
+  Detalle(invoiceID: number) {
+    this.servicio.obtenerDetalleFactura(invoiceID).subscribe(data => {
+      this.Detalle_Factura = data as FacturaDetalle;
+    });
+    console.log(this.Detalle_Factura);
+  }
+}

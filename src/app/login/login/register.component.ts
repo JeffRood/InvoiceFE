@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -43,6 +44,13 @@ export class RegisterComponent implements OnInit {
         sonIguales: true
       };
     };
+  }
+
+  Register(usuario: NgForm) {
+console.log(usuario);
+
+
+
   }
   }
 

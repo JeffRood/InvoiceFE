@@ -32,6 +32,7 @@ export interface IFacturaDetail {
   Quantity: number;
 }
 
+<<<<<<< HEAD
 
 export interface IAsiento {
   date: string;
@@ -45,7 +46,8 @@ export interface IAsiento {
   currencyId:	number;
 
   exchangeRate:	number;
-}
+
+=======
 export interface IFactura2 {
  InvoiceID: number;
  Date: string;
@@ -58,6 +60,5 @@ export interface FacturaDetalle {
   Precio: number;
   Cantidad: number;
   Total: number;
+>>>>>>> ebe5aea3b2faa8c067e7353cc2641bd1e6f30db9
 }
-
-

@@ -75,7 +75,7 @@
 
 </table>
 
-<button (click)="Facturar(ListaFactura )" type="button" class="btn money waves-effect waves-light m-r-10"> <i class="fa fa-dollar-sign" > </i>
+<button [disabled]="ListaFactura.length > 0 " (click)="Facturar(ListaFactura)" type="button" class="btn money waves-effect waves-light m-r-10"> <i class="fa fa-dollar-sign" > </i>
 
   Facturar
 

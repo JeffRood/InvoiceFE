@@ -13,6 +13,7 @@ import { PagesService } from '../pages.service';
 })
 export class ClienteComponent implements OnInit {
   forma: NgForm;
+  searchText: string;
 
   constructor(public servicio: ClienteService,
     public All: PagesService) { }
