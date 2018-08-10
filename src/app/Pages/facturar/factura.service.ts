@@ -83,5 +83,17 @@ Contabilidad(asiento) {
     return this.http.post(url, json, httpOptions);
 }
 
+ContabilidadItem(asientoItem) {
+  debugger;
+  // tslint:disable-next-line:prefer-const
+  let json = JSON.stringify(asientoItem);
+  const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  let url = 'https://simpleaccountingapp-api.azurewebsites.net//journalItems';
+  return this.http.post(url, json, httpOptions);
+}
+
 
 }

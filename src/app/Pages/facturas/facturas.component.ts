@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FacturaService } from '../facturar/factura.service';
-import { Factura, IFactura2, FacturaDetalle, IAsiento } from '../facturar/factura.modelo';
+import { Factura, IFactura2, FacturaDetalle, IAsiento, Item, IContabildad } from '../facturar/factura.modelo';
 import { NgForm } from '@angular/forms';
 
 import Swal from 'sweetalert2';
@@ -15,12 +15,17 @@ export class FacturasComponent implements OnInit {
    Lista_Factura: IFactura2;
    Detalle_Factura: FacturaDetalle;
    dia = Date();
+item: Item;
+id : number;
+
   constructor( public servicio: FacturaService) { }
 
   ngOnInit() {
   this.servicio.obtenerFactura().subscribe(data => {
    this.Lista_Factura = data as IFactura2;
   });
+
+
   }
 
   Detalle(invoiceID: number) {
@@ -33,18 +38,22 @@ export class FacturasComponent implements OnInit {
   contabilidad(form: NgForm) {
     let descripcion = form.value.Description;
    let date = this.dia;
-  let asiento: IAsiento = {
+
+
+   let asiento: IAsiento = {
     date: date,
-
     description:	descripcion,
-
     auxiliaryId: 3,
-
     status:	 1,
     currencyId:	1,
-
     exchangeRate:	1
    };
+
+
+
+
+
+
    Swal({
     title: 'Registar Asiento ?',
     type: 'warning',
@@ -56,8 +65,41 @@ export class FacturasComponent implements OnInit {
     if (registrar.value) {
 
 this.servicio.Contabilidad(asiento).subscribe(data => {
-  console.log(data);
+console.log(data);
 
+this.item = data as Item;
+this.id = this.item.id;
+console.log(this.id);
+
+
+
+let debito: IContabildad = {
+  journalEntryId: this.id,
+  accountId: 5,
+   reference: 'Esta Cuenta reduce en Inventario y Mercancia',
+   debit: 135461,
+   credit: 0
+
+}
+let credito: IContabildad = {
+  journalEntryId: this.id,
+  accountId: 3,
+   reference: 'Esta Cuenta reduce en Caja Chica',
+   debit: 0,
+   credit: 135461
+
+}
+
+
+this.servicio.ContabilidadItem(debito).subscribe(data => {
+console.log(data);
+
+});
+
+this.servicio.ContabilidadItem(credito).subscribe(data => {
+console.log(data);
+
+})
 
 
 });
@@ -77,8 +119,6 @@ this.servicio.Contabilidad(asiento).subscribe(data => {
           'error'
         ); }
        });
-
-
 
   }
 }

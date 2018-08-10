@@ -61,3 +61,25 @@ export interface FacturaDetalle {
 }
 
 
+export interface Item {
+
+  auxiliaryId : number;
+  createdAt : string;
+  currencyId : number;
+  date  :  string;
+  description  : string;
+  exchangeRate  :  number;
+  id  :  number;
+  status  :  number;
+  updatedAt  :  string;
+
+}
+
+export interface IContabildad {
+
+journalEntryId: number;
+ accountId: number;
+  reference: string;
+  debit: number;
+  credit: number
+}
