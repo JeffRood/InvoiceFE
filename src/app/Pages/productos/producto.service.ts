@@ -24,8 +24,8 @@ export class ProductoService {
     Price: null,
     Stock: null
   };
-  url = 'http://localhost:51516/';
- // url = 'http://invoiceintegracion.azurewebsites.net/';
+ // url = 'http://localhost:51516/';
+ url = 'http://facturar.azurewebsites.net/';
   constructor(private http: HttpClient) { }
 
 
@@ -34,6 +34,8 @@ export class ProductoService {
     // tslint:disable-next-line:no-debugger
 
     return this.http.get(this.url + 'api/Products').subscribe(data => {
+
+
      this.Producto = data;
    });
   //  GetProduct() {

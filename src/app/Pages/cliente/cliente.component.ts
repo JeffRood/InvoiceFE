@@ -17,8 +17,10 @@ export class ClienteComponent implements OnInit {
 
   constructor(public servicio: ClienteService,
     public All: PagesService) { }
-
+    url = 'http://invoiceintegracion.azurewebsites.net/';
   ngOnInit() {
+
+    this.url + 'api/Products'
 
 
   this.servicio.GetClient();

@@ -36,8 +36,8 @@ selectedAsiento: IAsiento  =  {
   exchangeRate:	null
 };
 
-url = 'http://localhost:51516/';
-// url = 'http://invoiceintegracion.azurewebsites.net/';
+// url = 'http://localhost:51516/';
+ url = 'http://facturar.azurewebsites.net/';
   constructor(private http: HttpClient ) { }
 
   postFactura(factura: any): Observable<any> {

@@ -23,8 +23,8 @@ export class ClienteService {
     AccountingAccount: null,
     ClientStatus: null
   };
-  url = 'http://localhost:51516/';
-  // url = 'http://invoiceintegracion.azurewebsites.net/';
+  //url = 'http://localhost:51516/';
+  url = 'http://facturar.azurewebsites.net/';
 
   constructor(private http: HttpClient) {
 
