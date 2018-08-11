@@ -24,8 +24,8 @@ export class ProductoService {
     Price: null,
     Stock: null
   };
-
-
+  url = 'http://localhost:51516/';
+ // url = 'http://invoiceintegracion.azurewebsites.net/';
   constructor(private http: HttpClient) { }
 
 
@@ -33,7 +33,7 @@ export class ProductoService {
   GetProduct() {
     // tslint:disable-next-line:no-debugger
 
-    return this.http.get('http://localhost:51516/api/Products').subscribe(data => {
+    return this.http.get(this.url + 'api/Products').subscribe(data => {
      this.Producto = data;
    });
   //  GetProduct() {
@@ -49,7 +49,7 @@ export class ProductoService {
 
  GetOneProduct(id: number) {
 
-    return this.http.get('http://localhost:51516/api/Products/' + id);
+    return this.http.get(this.url + 'api/Products/' + id);
  }
   postProduct(prod: Producto): Observable<any> {
     // tslint:disable-next-line:prefer-const
@@ -59,12 +59,12 @@ export class ProductoService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.post('http://localhost:51516/api/Products', json, httpOptions);
+    return this.http.post(this.url + 'api/Products', json, httpOptions);
 }
 
 
 DeleteProduct( id: number) {
-  return this.http.delete('http://localhost:51516/api/Products/' + id).subscribe(data => {
+  return this.http.delete(this.url + 'api/Products/' + id).subscribe(data => {
     this.GetProduct     ();
   });
 }
@@ -74,7 +74,7 @@ PutProduct(id , prod): Observable<any> {
   const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-   return this.http.put('http://localhost:51516/api/Products/' + id, json, httpOptions);
+   return this.http.put(this.url + 'api/Products/' + id, json, httpOptions);
 
 }
 

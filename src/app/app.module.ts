@@ -5,10 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { APP_ROUTES } from './app.routes';
 
 // MODULOS!!!
-
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
 
 // SERVICIOS!!!
 // ESTAN IMPORTADOS EN MODULOS
@@ -17,11 +15,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/login/register.component';
 
-
-
-
 // Shared Compartidos
-
 
 
 // rutas
@@ -32,14 +26,12 @@ import { PageComponent } from './Pages/page.component';
 import { PageModule } from './Pages/page.module';
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent
+
 
   ],
   imports: [

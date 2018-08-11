@@ -8,11 +8,12 @@ import { Response, RequestOptions, RequestMethod } from '@angular/http';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/Observable';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  // web = 'http://localhost:58175/';
+
 
   Clientes: any;
     selectedcliente: Cliente = {
@@ -22,6 +23,8 @@ export class ClienteService {
     AccountingAccount: null,
     ClientStatus: null
   };
+  url = 'http://localhost:51516/';
+  // url = 'http://invoiceintegracion.azurewebsites.net/';
 
   constructor(private http: HttpClient) {
 
@@ -31,7 +34,10 @@ export class ClienteService {
 
 GetClient() {
 
-  return this.http.get('http://localhost:51516/api/Clients').subscribe(data => {
+
+
+
+  return this.http.get(this.url + 'api/Clients').subscribe(data => {
    this.Clientes = data;
 
  });
@@ -44,10 +50,10 @@ GetClient() {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.post('http://localhost:51516/api/Clients', json, httpOptions);
+    return this.http.post(this.url + 'api/Clients', json, httpOptions);
 }
 DeleteClient( id: number) {
-  return this.http.delete('http://localhost:51516/api/Clients/' + id).subscribe(
+  return this.http.delete(this.url + 'api/Clients/' + id).subscribe(
  data => {
   this.GetClient();
  }
@@ -60,7 +66,7 @@ PutClient(id , client): Observable<any> {
   const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-   return this.http.put('http://localhost:51516/api/Clients/' + id, json, httpOptions);
+   return this.http.put(this.url + 'api/Clients/' + id, json, httpOptions);
 
 }
 

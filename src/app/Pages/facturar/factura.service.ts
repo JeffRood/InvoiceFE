@@ -35,6 +35,9 @@ selectedAsiento: IAsiento  =  {
 
   exchangeRate:	null
 };
+
+url = 'http://localhost:51516/';
+// url = 'http://invoiceintegracion.azurewebsites.net/';
   constructor(private http: HttpClient ) { }
 
   postFactura(factura: any): Observable<any> {
@@ -45,7 +48,7 @@ selectedAsiento: IAsiento  =  {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.post('http://localhost:51516/api/Invoices', json, httpOptions);
+    return this.http.post(this.url + 'api/Invoices', json, httpOptions);
 }
 GenerarFactura(fac) {
 
@@ -58,17 +61,17 @@ GenerarFactura(fac) {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     debugger;
-    let url = 'http://localhost:51516/api/Invoices';
+    let url = this.url + 'api/Invoices';
     return this.http.post(url, json, httpOptions);
 }
 
 
 obtenerFactura() {
-  return this.http.get('http://localhost:51516/api/Invoices');
+  return this.http.get(this.url + 'api/Invoices');
 }
 
 obtenerDetalleFactura(id: number) {
-  return this.http.get('http://localhost:51516/api/Invoices/' + id );
+  return this.http.get(this.url + 'api/Invoices/' + id );
 }
 
 

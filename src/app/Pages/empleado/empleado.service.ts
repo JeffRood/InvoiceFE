@@ -16,14 +16,15 @@ export class EmpleadoService {
     EmployeeStatus: null,
   };
 
-
+  url = 'http://localhost:51516/';
+  // url = 'http://invoiceintegracion.azurewebsites.net/';
   constructor(private http: HttpClient ) {
 
 
   }
   GetEmployee() {
 
-    return this.http.get('http://localhost:51516/api/Employees').subscribe(data => {
+    return this.http.get(this.url + 'api/Employees').subscribe(data => {
      this.Empleado = data;
       });
   }
@@ -35,11 +36,11 @@ export class EmpleadoService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.post('http://localhost:51516/api/Employees', json, httpOptions);
+    return this.http.post(this.url + 'api/Employees', json, httpOptions);
 }
 
 DeleteEmployee( id: number) {
-  return this.http.delete('http://localhost:51516/api/Employees/' + id).subscribe(data => {
+  return this.http.delete(this.url + 'api/Employees/' + id).subscribe(data => {
     this.GetEmployee();
   });
 }
@@ -49,7 +50,7 @@ PutEmployee(id , Emp): Observable<any> {
   const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-   return this.http.put('http://localhost:51516/api/Employees/' + id, json, httpOptions);
+   return this.http.put(this.url + 'api/Employees/' + id, json, httpOptions);
 
 }
 

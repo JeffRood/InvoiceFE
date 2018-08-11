@@ -10,7 +10,7 @@ if (searchText) {
 
 return value.filter(v => {
 
-let data = '';
+let data = ' ';
 // tslint:disable-next-line:forin
 for (let key in v['value']) {
 
