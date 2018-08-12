@@ -14,7 +14,7 @@
     <button (click)="excel()" type="button" class="btn btn-warning waves-effect waves-light m-r-10">
       <i class="fa fa-file-excel"></i>  Exportar Excel </button>
 
-    <input [(ngModel)]="searchText" placeholder="Busqueda">
+    <!-- <input [(ngModel)]="searchText" placeholder="Busqueda"> -->
 
     <table class="table table-sm table-hover cdcliente">
         <thead>
@@ -28,7 +28,7 @@
             </tr>
         </thead>
 
-        <tbody *ngFor="let cliente of servicio.Clientes |  filtrar : searchText">
+        <tbody *ngFor="let cliente of servicio.Clientes ">
             <tr>
                 <td>{{cliente.Name}}</td>
                 <td>{{cliente.Document| slice:0:3}}-{{cliente.Document| slice:3:10}}-{{cliente.Document| slice:10:11}} </td>
@@ -155,7 +155,7 @@ Actualizar  Modal
                         <label for="artDescripcion" class="col-sm-3 col-form-label">Cedula</label>
                         <div class="col-xs-12">
 
-                            <input (change)="validarCedula()" type="text" required class="form-control" name="Document" #Document="ngModel" [(ngModel)]="servicio.selectedcliente.Document">
+                            <input type="text" required class="form-control" name="Document" #Document="ngModel" [(ngModel)]="servicio.selectedcliente.Document">
                         </div>
                     </div>
 
